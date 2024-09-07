@@ -44,7 +44,7 @@ export async function GET(request: Request): Promise<Response> {
     });
 
     const existingUser = await db.user.findUnique({
-      where: { githubId: githubUser.id.toString() },
+      where: { githubId: githubUser.id },
     });
 
     let userId: string;
@@ -56,7 +56,7 @@ export async function GET(request: Request): Promise<Response> {
       await db.user.create({
         data: {
           id: userId,
-          githubId: githubUser.id.toString(),
+          githubId: githubUser.id,
           username: githubUser.login,
         },
       });
